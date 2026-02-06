@@ -88,15 +88,14 @@ export const markets: Markets = {
   ],
 };
 
-type CargoItem = {
-  name: Omit<Good, "fuel">;
-  price: number;
-  quantity: number;
+type CargoItem = Exclude<Good, "fuel">;
+type Cargo = {
+  [key in CargoItem]: number;
 };
 
 type SpaceShip = {
   fuel: number;
-  cargo: CargoItem[];
+  cargo: Cargo;
   cargoCapacity: number;
   maxCargoCapacity: number;
 };
@@ -133,7 +132,12 @@ export class GameState {
     this.currentPlanet = selectRandomPlanet(planets);
     this.spaceship = {
       fuel: generateNumber(MAX_FUEL, MIN_FUEL),
-      cargo: [],
+      cargo: {
+        water: 0,
+        metals: 0,
+        tech: 0,
+        spices: 0,
+      },
       cargoCapacity: 0,
       maxCargoCapacity: MAX_CARGO_CAPACITY,
     };
@@ -157,7 +161,7 @@ export class GameState {
     return this.credits;
   }
 
-  buy(good: Omit<Good, "fuel">, quantity: number) {
+  buy(good: CargoItem, quantity: number) {
     const market = markets[this.currentPlanet];
 
     let unitPrice: number | undefined = undefined;
@@ -184,17 +188,13 @@ export class GameState {
     ) {
       throw new Error("Not enough cargo capacity");
     }
-    const item: CargoItem = {
-      name: good,
-      price: unitPrice,
-      quantity: quantity,
-    };
-    this.spaceship.cargo.push(item);
+
+    this.spaceship.cargo[good] += quantity;
     this.spaceship.cargoCapacity += quantity;
     this.credits -= unitPrice * quantity;
   }
 
-  sell(good: Good, quantity: number) {
+  sell(good: CargoItem, quantity: number) {
     const market = markets[this.currentPlanet];
 
     let unitPrice: number | undefined = undefined;
@@ -202,19 +202,16 @@ export class GameState {
       if (unit.name == good) {
         unitPrice = unit.price;
       }
-      unitPrice = unit.price;
     }
     if (!unitPrice) {
       throw new Error("Something went wrong!");
     }
 
-    for (const cargoUnit of this.spaceship.cargo) {
-      if (cargoUnit.name === good) {
-        if (cargoUnit.quantity < quantity) {
-          throw new Error(`Not enough ${cargoUnit.name} quantity`);
-        }
-      }
+    // Check if we have enough quantity of the item
+    if (this.spaceship.cargo[good] < quantity) {
+      throw new Error(`Not enough ${good} quantity`);
     }
+    this.spaceship.cargo[good] -= quantity;
     this.spaceship.cargoCapacity -= quantity;
     this.credits += unitPrice * quantity;
   }
