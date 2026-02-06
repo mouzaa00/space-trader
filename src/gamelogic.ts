@@ -29,7 +29,7 @@ type Markets = {
   [key in Planet]: MarketItem[];
 };
 
-const markets: Markets = {
+export const markets: Markets = {
   mercury: [
     { name: "water", price: 450, quantity: 5 },
     { name: "metals", price: 80, quantity: 50 },
@@ -97,6 +97,7 @@ type CargoItem = {
 type SpaceShip = {
   fuel: number;
   cargo: CargoItem[];
+  cargoCapacity: number;
   maxCargoCapacity: number;
 };
 
@@ -133,6 +134,7 @@ export class GameState {
     this.spaceship = {
       fuel: generateNumber(MAX_FUEL, MIN_FUEL),
       cargo: [],
+      cargoCapacity: 0,
       maxCargoCapacity: MAX_CARGO_CAPACITY,
     };
     this.targetWealth = generateNumber(MAX_WEALTH, MIN_WEALTH);
@@ -147,11 +149,48 @@ export class GameState {
     return this.spaceship;
   }
 
-  getIntendedWealth() {
+  getTargetWealth() {
     return this.targetWealth;
   }
 
   getCredits() {
     return this.credits;
+  }
+
+  buy(good: Omit<Good, "fuel">, quantity: number) {
+    const market = markets[this.currentPlanet];
+
+    let unitPrice: number | undefined = undefined;
+    for (const unit of market) {
+      if (unit.name == good) {
+        if (unit.quantity < quantity) {
+          throw new Error(
+            `Not enough quantity in ${this.currentPlanet} market`,
+          );
+        }
+        unitPrice = unit.price;
+      }
+    }
+
+    if (!unitPrice) {
+      throw new Error("Something went wrong!");
+    }
+    if (this.credits < unitPrice * quantity) {
+      throw new Error("Not enough credits");
+    }
+    if (
+      this.spaceship.cargoCapacity + quantity >
+      this.spaceship.maxCargoCapacity
+    ) {
+      throw new Error("Not enough cargo capacity");
+    }
+    const item: CargoItem = {
+      name: good,
+      price: unitPrice,
+      quantity: quantity,
+    };
+    this.spaceship.cargo.push(item);
+    this.spaceship.cargoCapacity += quantity;
+    this.credits -= unitPrice * quantity;
   }
 }
