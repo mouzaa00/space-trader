@@ -193,4 +193,29 @@ export class GameState {
     this.spaceship.cargoCapacity += quantity;
     this.credits -= unitPrice * quantity;
   }
+
+  sell(good: Good, quantity: number) {
+    const market = markets[this.currentPlanet];
+
+    let unitPrice: number | undefined = undefined;
+    for (const unit of market) {
+      if (unit.name == good) {
+        unitPrice = unit.price;
+      }
+      unitPrice = unit.price;
+    }
+    if (!unitPrice) {
+      throw new Error("Something went wrong!");
+    }
+
+    for (const cargoUnit of this.spaceship.cargo) {
+      if (cargoUnit.name === good) {
+        if (cargoUnit.quantity < quantity) {
+          throw new Error(`Not enough ${cargoUnit.name} quantity`);
+        }
+      }
+    }
+    this.spaceship.cargoCapacity -= quantity;
+    this.credits += unitPrice * quantity;
+  }
 }

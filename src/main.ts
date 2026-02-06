@@ -17,6 +17,12 @@ function main() {
   const updatedSpaceship = gs.getSpaceship();
   console.log("Cargo:", updatedSpaceship.cargo);
   console.log("Cargo Capacity:", updatedSpaceship.cargoCapacity);
+  gs.sell("metals", 1);
+  const newCredits = gs.getCredits();
+  console.log("new credits:", newCredits);
+  const newSpaceShip = gs.getSpaceship();
+  console.log("Cargo:", newSpaceShip.cargo);
+  console.log("Cargo Capacity:", newSpaceShip.cargoCapacity);
 }
 
 main();
