@@ -8,6 +8,7 @@ import {
   MIN_CREDITS,
   MIN_FUEL,
   MIN_WEALTH,
+  planetDistances,
   planets,
   type CargoItem,
   type Planet,
@@ -43,6 +44,12 @@ function selectRandomPlanet(planets: Planet[]): Planet {
 
 function generateNumber(max: number, min: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function calculateFuelCost(from: Planet, to: Planet): number {
+  const distance = Math.abs(planetDistances[from] - planetDistances[to]);
+  const baseFuelPerUnit = 1000; // fuel per distance unit
+  return distance * baseFuelPerUnit;
 }
 
 export class GameState {
@@ -118,5 +125,11 @@ export class GameState {
     this.spaceship.cargo[good] -= quantity;
     this.spaceship.cargoCapacity -= quantity;
     this.credits += marketItem.price * quantity;
+  }
+
+  travel(planet: Planet, fuel: number) {
+    // Reduce fuel required to travel to a specific planet
+    this.spaceship.fuel -= fuel;
+    this.currentPlanet = planet;
   }
 }

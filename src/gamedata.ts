@@ -19,6 +19,12 @@ export const planets: Planet[] = [
   "neptune",
 ];
 
+// This narrows the parameter type to Planet if it returned true
+export function isValidPlanet(planet?: string): planet is Planet {
+  const planetSet = new Set(planets);
+  return typeof planet === "string" && planetSet.has(planet as Planet);
+}
+
 export type Good = "water" | "metals" | "tech" | "spices" | "fuel";
 
 export type MarketItem = {
@@ -110,6 +116,17 @@ export type SpaceShip = {
   cargo: Cargo;
   cargoCapacity: number;
   maxCargoCapacity: number;
+};
+
+export const planetDistances: Record<Planet, number> = {
+  mercury: 1,
+  venus: 2,
+  earth: 3,
+  mars: 4,
+  jupiter: 8,
+  saturn: 14,
+  uranus: 19,
+  neptune: 24,
 };
 
 export const MAX_FUEL = 25_000;
