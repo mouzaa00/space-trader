@@ -1,7 +1,7 @@
 import { isValidCargoItem } from "./gamedata";
 import type { GameState } from "./gamelogic";
 
-export function commandBuy(gs: GameState, words: string[]) {
+export function commandSell(gs: GameState, words: string[]) {
   if (words.length !== 3) {
     throw new Error("Usage: buy <cargo_item> <quantity>");
   }
@@ -16,8 +16,8 @@ export function commandBuy(gs: GameState, words: string[]) {
     throw new Error(`Error: quantity must be a number`);
   }
 
-  gs.buy(cargoItem, quantity);
+  gs.sell(cargoItem, quantity);
   console.log(
-    `You bought ${quantity} ${cargoItem} from ${gs.getCurrentPlanet()} market`,
+    `You sold ${quantity} ${cargoItem} to ${gs.getCurrentPlanet()} market`,
   );
 }

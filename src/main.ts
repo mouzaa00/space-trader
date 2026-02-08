@@ -1,5 +1,6 @@
 import { commandBuy } from "./buy";
 import { GameState, getInput } from "./gamelogic";
+import { commandSell } from "./sell";
 
 async function main() {
   const gs = new GameState();
@@ -10,6 +11,12 @@ async function main() {
     if (command === "buy") {
       try {
         commandBuy(gs, words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    } else if (command === "sell") {
+      try {
+        commandSell(gs, words);
       } catch (err) {
         console.log((err as Error).message);
       }
