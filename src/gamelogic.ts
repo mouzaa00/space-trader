@@ -1,6 +1,13 @@
 import readline from "readline";
 import {
   markets,
+  MAX_CARGO_CAPACITY,
+  MAX_CREDITS,
+  MAX_FUEL,
+  MAX_WEALTH,
+  MIN_CREDITS,
+  MIN_FUEL,
+  MIN_WEALTH,
   planets,
   type CargoItem,
   type Planet,
@@ -37,14 +44,6 @@ function selectRandomPlanet(planets: Planet[]): Planet {
 function generateNumber(max: number, min: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-const MAX_FUEL = 25_000;
-const MIN_FUEL = 15_000;
-const MAX_WEALTH = 10_000;
-const MIN_WEALTH = 8_000;
-const MAX_CARGO_CAPACITY = 30;
-const MAX_CREDITS = 500;
-const MIN_CREDITS = 200;
 
 export class GameState {
   private currentPlanet: Planet;

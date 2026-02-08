@@ -111,3 +111,11 @@ export type SpaceShip = {
   cargoCapacity: number;
   maxCargoCapacity: number;
 };
+
+export const MAX_FUEL = 25_000;
+export const MIN_FUEL = 15_000;
+export const MAX_WEALTH = 10_000;
+export const MIN_WEALTH = 8_000;
+export const MAX_CARGO_CAPACITY = 30;
+export const MAX_CREDITS = 500;
+export const MIN_CREDITS = 200;
