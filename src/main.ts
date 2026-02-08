@@ -1,28 +1,23 @@
-import { GameState, markets } from "./gamelogic";
+import { commandBuy } from "./buy";
+import { GameState, getInput } from "./gamelogic";
 
-function main() {
+async function main() {
   const gs = new GameState();
-  const planet = gs.getCurrentPlanet();
-  const credits = gs.getCredits();
-  const targetWealth = gs.getTargetWealth();
-  console.log("planet:", planet);
-  console.log("target wealth:", targetWealth);
-  console.log("credits:", credits);
-  const spaceship = gs.getSpaceship();
-  console.log("Cargo:", spaceship.cargo);
-  console.log("Cargo Capacity:", spaceship.cargoCapacity);
-  gs.buy("metals", 2);
-  console.log(`Buying 2 metals in ${planet} market`);
-  console.log("updated credits", gs.getCredits());
-  const updatedSpaceship = gs.getSpaceship();
-  console.log("Cargo:", updatedSpaceship.cargo);
-  console.log("Cargo Capacity:", updatedSpaceship.cargoCapacity);
-  gs.sell("metals", 1);
-  const newCredits = gs.getCredits();
-  console.log("new credits:", newCredits);
-  const newSpaceShip = gs.getSpaceship();
-  console.log("Cargo:", newSpaceShip.cargo);
-  console.log("Cargo Capacity:", newSpaceShip.cargoCapacity);
+
+  while (true) {
+    const words = await getInput();
+    const command = words[0];
+    if (command === "buy") {
+      try {
+        commandBuy(gs, words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    }
+  }
 }
 
-main();
+main().catch((err) => {
+  console.error(`Fatal Error: ${err}`);
+  process.exit(1);
+});
