@@ -1,4 +1,5 @@
 import { commandBuy } from "./buy";
+import { commandExplore } from "./explore";
 import { GameState, getInput } from "./gamelogic";
 import { commandHelp } from "./help";
 import { commandMarket } from "./market";
@@ -53,6 +54,12 @@ async function main() {
     } else if (command === "help") {
       try {
         commandHelp(words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    } else if (command === "explore") {
+      try {
+        commandExplore(gs, words);
       } catch (err) {
         console.log((err as Error).message);
       }
