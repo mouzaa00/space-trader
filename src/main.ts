@@ -1,6 +1,7 @@
 import { commandBuy } from "./buy";
 import { GameState, getInput } from "./gamelogic";
 import { commandSell } from "./sell";
+import { commandStatus } from "./status";
 import { commandTravel } from "./travel";
 
 async function main() {
@@ -24,6 +25,12 @@ async function main() {
     } else if (command === "travel") {
       try {
         commandTravel(gs, words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    } else if (command === "status") {
+      try {
+        commandStatus(gs, words);
       } catch (err) {
         console.log((err as Error).message);
       }
