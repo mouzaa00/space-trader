@@ -2,6 +2,7 @@ import { commandBuy } from "./buy";
 import { GameState, getInput } from "./gamelogic";
 import { commandHelp } from "./help";
 import { commandMarket } from "./market";
+import { commandQuit } from "./quit";
 import { commandRefuel } from "./refuel";
 import { commandSell } from "./sell";
 import { commandStatus } from "./status";
@@ -55,6 +56,14 @@ async function main() {
       } catch (err) {
         console.log((err as Error).message);
       }
+    } else if (command === "quit") {
+      try {
+        commandQuit(words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    } else {
+      console.log("Unknown command run help");
     }
   }
 }
