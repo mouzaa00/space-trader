@@ -1,5 +1,5 @@
 import { MAX_FUEL } from "./gamedata";
-import type { GameState } from "./gamelogic";
+import { numberToDollar, type GameState } from "./gamelogic";
 
 export function commandStatus(gs: GameState, words: string[]) {
   if (words.length !== 1) {
@@ -44,11 +44,4 @@ export function commandStatus(gs: GameState, words: string[]) {
   console.log(
     `Progress: ${progress.toFixed(2)}% (${numberToDollar(targetWealth - credits)} remaining)`,
   );
-}
-
-function numberToDollar(number: number) {
-  return number.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
 }

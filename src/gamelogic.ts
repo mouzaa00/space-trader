@@ -52,6 +52,13 @@ export function calculateFuelCost(from: Planet, to: Planet): number {
   return distance * baseFuelPerUnit;
 }
 
+export function numberToDollar(number: number) {
+  return number.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+}
+
 export class GameState {
   private currentPlanet: Planet;
   private spaceship: SpaceShip;
