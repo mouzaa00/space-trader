@@ -136,3 +136,4 @@ export const MIN_WEALTH = 8_000;
 export const MAX_CARGO_CAPACITY = 30;
 export const MAX_CREDITS = 500;
 export const MIN_CREDITS = 200;
+export const FUEL_CONVERTION_RATE = 1000;

@@ -1,6 +1,7 @@
 import { commandBuy } from "./buy";
 import { GameState, getInput } from "./gamelogic";
 import { commandMarket } from "./market";
+import { commandRefuel } from "./refuel";
 import { commandSell } from "./sell";
 import { commandStatus } from "./status";
 import { commandTravel } from "./travel";
@@ -38,6 +39,12 @@ async function main() {
     } else if (command === "market") {
       try {
         commandMarket(gs, words);
+      } catch (err) {
+        console.log((err as Error).message);
+      }
+    } else if (command === "refuel") {
+      try {
+        commandRefuel(gs, words);
       } catch (err) {
         console.log((err as Error).message);
       }

@@ -1,5 +1,6 @@
 import readline from "readline";
 import {
+  FUEL_CONVERTION_RATE,
   markets,
   MAX_CARGO_CAPACITY,
   MAX_CREDITS,
@@ -138,5 +139,33 @@ export class GameState {
     // Reduce fuel required to travel to a specific planet
     this.spaceship.fuel -= fuel;
     this.currentPlanet = planet;
+  }
+
+  refuel(units: number) {
+    const market = markets[this.currentPlanet];
+    if (market.fuel.quantity < units) {
+      throw new Error(
+        `Error: not enough units in ${this.currentPlanet} market`,
+      );
+    }
+    const fullFuelPrice = market.fuel.price * units;
+    if (this.credits < fullFuelPrice) {
+      throw new Error("Error: not enough credits");
+    }
+    // Convert fuel units to actual fuel
+    const actualFuel = units * FUEL_CONVERTION_RATE;
+    if (this.spaceship.fuel + actualFuel > MAX_FUEL) {
+      const maxPossibleUnits = Math.floor(
+        (MAX_FUEL - this.spaceship.fuel) / FUEL_CONVERTION_RATE,
+      );
+      throw new Error(
+        `Error: max fuel is ${MAX_FUEL}. Max Possible units is ${maxPossibleUnits}`,
+      );
+    }
+
+    this.spaceship.fuel += actualFuel;
+    this.credits -= fullFuelPrice;
+    market.fuel.quantity -= units;
+    return { fuel: actualFuel, price: fullFuelPrice };
   }
 }
