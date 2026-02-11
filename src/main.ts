@@ -1,6 +1,6 @@
 import { commandBuy } from "./buy";
 import { commandExplore } from "./explore";
-import { GameState, getInput } from "./gamelogic";
+import { GameState, getInput, printWelcome } from "./gamelogic";
 import { commandHelp } from "./help";
 import { commandMarket } from "./market";
 import { commandQuit } from "./quit";
@@ -11,6 +11,12 @@ import { commandTravel } from "./travel";
 
 async function main() {
   const gs = new GameState();
+  printWelcome({
+    planet: gs.getCurrentPlanet(),
+    credits: gs.getCredits(),
+    targetWealth: gs.getTargetWealth(),
+    fuel: gs.getSpaceship().fuel,
+  });
 
   while (true) {
     const words = await getInput();

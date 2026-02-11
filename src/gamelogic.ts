@@ -60,6 +60,28 @@ export function numberToDollar(number: number) {
   });
 }
 
+export function printWelcome(data: {
+  planet: string;
+  credits: number;
+  targetWealth: number;
+  fuel: number;
+}) {
+  console.log("=================================");
+  console.log("    SPACE TRADER RELOADED");
+  console.log("=================================");
+  console.log("");
+  console.log("Captain's Log - Mission Briefing");
+  console.log("---------------------------------");
+  console.log(`Starting Planet: ${data.planet}`);
+  console.log(`Credits: ${numberToDollar(data.credits)}`);
+  console.log(`Mission Goal: ${numberToDollar(data.targetWealth)}`);
+  console.log(`Ship Fuel: ${data.fuel.toLocaleString()}`);
+  console.log("");
+  console.log("Buy low, sell high. Watch your fuel.");
+  console.log("");
+  console.log("Type 'help' for commands.");
+}
+
 export class GameState {
   private currentPlanet: Planet;
   private spaceship: SpaceShip;
