@@ -120,6 +120,7 @@ export class GameState {
     this.spaceship.cargo[good] += quantity;
     this.spaceship.cargoCapacity += quantity;
     this.credits -= marketItem.price * quantity;
+    market[good].quantity -= quantity;
   }
 
   sell(good: CargoItem, quantity: number) {
@@ -133,6 +134,7 @@ export class GameState {
     this.spaceship.cargo[good] -= quantity;
     this.spaceship.cargoCapacity -= quantity;
     this.credits += marketItem.price * quantity;
+    market[good].quantity += quantity;
   }
 
   travel(planet: Planet, fuel: number) {

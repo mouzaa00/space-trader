@@ -3,7 +3,7 @@ import type { GameState } from "./gamelogic";
 
 export function commandSell(gs: GameState, words: string[]) {
   if (words.length !== 3) {
-    throw new Error("Usage: buy <cargo_item> <quantity>");
+    throw new Error("Usage: sell <cargo_item> <quantity>");
   }
 
   const cargoItem = words[1];
