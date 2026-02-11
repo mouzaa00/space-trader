@@ -12,8 +12,8 @@ export function commandSell(gs: GameState, words: string[]) {
   }
 
   const quantity = parseInt(words[2]!);
-  if (isNaN(quantity)) {
-    throw new Error(`Error: quantity must be a number`);
+  if (isNaN(quantity) || quantity <= 0) {
+    throw new Error(`Error: quantity must be a positive number`);
   }
 
   gs.sell(cargoItem, quantity);
