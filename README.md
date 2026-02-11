@@ -37,10 +37,10 @@ A text-based space trading simulation game built with TypeScript and Node.js. Bu
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start the game
-npm start
+pnpm start
 ```
 
 ## Game Commands
