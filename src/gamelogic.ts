@@ -170,4 +170,38 @@ export class GameState {
     market.fuel.quantity -= units;
     return { fuel: actualFuel, price: fullFuelPrice };
   }
+
+  hasWon(): boolean {
+    return this.credits >= this.targetWealth;
+  }
+
+  hasLost(): boolean {
+    const canTravel = Object.keys(planetDistances).some(
+      (planet) => {
+        if (planet === this.currentPlanet) return false;
+        const fuelCost = calculateFuelCost(this.currentPlanet, planet as Planet);
+        return this.spaceship.fuel >= fuelCost;
+      }
+    );
+    const canRefuel = markets[this.currentPlanet].fuel.price <= this.credits;
+    return !canTravel && !canRefuel && this.credits < this.targetWealth;
+  }
+
+  checkGameEnd(): { gameOver: boolean; message?: string; won?: boolean } {
+    if (this.hasWon()) {
+      return {
+        gameOver: true,
+        won: true,
+        message: `\n🎉 Congratulations! You've reached your target wealth of ${numberToDollar(this.targetWealth)}!\nFinal Credits: ${numberToDollar(this.credits)}\nYou are a legendary Space Trader!`,
+      };
+    }
+    if (this.hasLost()) {
+      return {
+        gameOver: true,
+        won: false,
+        message: `\n💀 Game Over! You're stranded on ${this.currentPlanet} with no fuel and no money.\nFinal Credits: ${numberToDollar(this.credits)}\nTarget was: ${numberToDollar(this.targetWealth)}\nBetter luck next time, trader!`,
+      };
+    }
+    return { gameOver: false };
+  }
 }
