@@ -127,10 +127,4 @@ src/
 └── quit.ts           # Quit command
 ```
 
-## License
-
-ISC
-
----
-
 *Built as a learning project to explore TypeScript's type system and CLI application architecture.*
