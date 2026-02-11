@@ -42,60 +42,60 @@ export type Markets = {
 
 export const markets: Markets = {
   mercury: {
-    water: { price: 450, quantity: 5 },
-    metals: { price: 80, quantity: 50 },
-    tech: { price: 200, quantity: 15 },
-    spices: { price: 320, quantity: 8 },
-    fuel: { price: 120, quantity: 30 },
+    water: { price: 300, quantity: 15 },
+    metals: { price: 60, quantity: 80 },
+    tech: { price: 180, quantity: 25 },
+    spices: { price: 250, quantity: 15 },
+    fuel: { price: 110, quantity: 40 },
   },
   venus: {
-    water: { price: 380, quantity: 12 },
-    metals: { price: 95, quantity: 40 },
-    tech: { price: 180, quantity: 20 },
-    spices: { price: 280, quantity: 15 },
-    fuel: { price: 100, quantity: 25 },
+    water: { price: 250, quantity: 25 },
+    metals: { price: 80, quantity: 60 },
+    tech: { price: 160, quantity: 30 },
+    spices: { price: 220, quantity: 20 },
+    fuel: { price: 90, quantity: 35 },
   },
   earth: {
-    water: { price: 50, quantity: 100 },
-    metals: { price: 120, quantity: 60 },
-    tech: { price: 150, quantity: 45 },
-    spices: { price: 200, quantity: 30 },
-    fuel: { price: 80, quantity: 80 },
+    water: { price: 40, quantity: 150 },
+    metals: { price: 100, quantity: 80 },
+    tech: { price: 130, quantity: 60 },
+    spices: { price: 160, quantity: 40 },
+    fuel: { price: 70, quantity: 100 },
   },
   mars: {
-    water: { price: 420, quantity: 8 },
-    metals: { price: 70, quantity: 70 },
-    tech: { price: 220, quantity: 12 },
-    spices: { price: 350, quantity: 6 },
-    fuel: { price: 110, quantity: 35 },
+    water: { price: 280, quantity: 20 },
+    metals: { price: 55, quantity: 90 },
+    tech: { price: 190, quantity: 25 },
+    spices: { price: 280, quantity: 15 },
+    fuel: { price: 100, quantity: 45 },
   },
   jupiter: {
-    water: { price: 500, quantity: 3 },
-    metals: { price: 60, quantity: 90 },
-    tech: { price: 280, quantity: 8 },
-    spices: { price: 400, quantity: 4 },
-    fuel: { price: 150, quantity: 20 },
+    water: { price: 350, quantity: 12 },
+    metals: { price: 45, quantity: 120 },
+    tech: { price: 230, quantity: 20 },
+    spices: { price: 320, quantity: 12 },
+    fuel: { price: 130, quantity: 30 },
   },
   saturn: {
-    water: { price: 480, quantity: 4 },
-    metals: { price: 65, quantity: 80 },
-    tech: { price: 250, quantity: 10 },
-    spices: { price: 380, quantity: 5 },
-    fuel: { price: 140, quantity: 22 },
+    water: { price: 320, quantity: 15 },
+    metals: { price: 50, quantity: 100 },
+    tech: { price: 210, quantity: 22 },
+    spices: { price: 290, quantity: 14 },
+    fuel: { price: 120, quantity: 32 },
   },
   uranus: {
-    water: { price: 520, quantity: 2 },
-    metals: { price: 55, quantity: 100 },
-    tech: { price: 300, quantity: 6 },
-    spices: { price: 420, quantity: 3 },
-    fuel: { price: 160, quantity: 18 },
+    water: { price: 380, quantity: 10 },
+    metals: { price: 40, quantity: 130 },
+    tech: { price: 250, quantity: 18 },
+    spices: { price: 340, quantity: 10 },
+    fuel: { price: 140, quantity: 28 },
   },
   neptune: {
-    water: { price: 550, quantity: 1 },
-    metals: { price: 50, quantity: 110 },
-    tech: { price: 320, quantity: 5 },
-    spices: { price: 450, quantity: 2 },
-    fuel: { price: 170, quantity: 15 },
+    water: { price: 400, quantity: 8 },
+    metals: { price: 35, quantity: 140 },
+    tech: { price: 270, quantity: 16 },
+    spices: { price: 360, quantity: 8 },
+    fuel: { price: 150, quantity: 25 },
   },
 };
 
@@ -129,11 +129,11 @@ export const planetDistances: Record<Planet, number> = {
   neptune: 24,
 };
 
-export const MAX_FUEL = 25_000;
-export const MIN_FUEL = 15_000;
-export const MAX_WEALTH = 10_000;
-export const MIN_WEALTH = 8_000;
-export const MAX_CARGO_CAPACITY = 30;
-export const MAX_CREDITS = 500;
-export const MIN_CREDITS = 200;
-export const FUEL_CONVERTION_RATE = 1000;
+export const MAX_FUEL = 50_000;
+export const MIN_FUEL = 35_000;
+export const MAX_WEALTH = 5_000;
+export const MIN_WEALTH = 3_500;
+export const MAX_CARGO_CAPACITY = 50;
+export const MAX_CREDITS = 1_500;
+export const MIN_CREDITS = 800;
+export const FUEL_CONVERTION_RATE = 500;

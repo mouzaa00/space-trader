@@ -49,8 +49,7 @@ function generateNumber(max: number, min: number): number {
 
 export function calculateFuelCost(from: Planet, to: Planet): number {
   const distance = Math.abs(planetDistances[from] - planetDistances[to]);
-  const baseFuelPerUnit = 1000; // fuel per distance unit
-  return distance * baseFuelPerUnit;
+  return distance * FUEL_CONVERTION_RATE;
 }
 
 export function numberToDollar(number: number) {
@@ -198,13 +197,11 @@ export class GameState {
   }
 
   hasLost(): boolean {
-    const canTravel = Object.keys(planetDistances).some(
-      (planet) => {
-        if (planet === this.currentPlanet) return false;
-        const fuelCost = calculateFuelCost(this.currentPlanet, planet as Planet);
-        return this.spaceship.fuel >= fuelCost;
-      }
-    );
+    const canTravel = Object.keys(planetDistances).some((planet) => {
+      if (planet === this.currentPlanet) return false;
+      const fuelCost = calculateFuelCost(this.currentPlanet, planet as Planet);
+      return this.spaceship.fuel >= fuelCost;
+    });
     const canRefuel = markets[this.currentPlanet].fuel.price <= this.credits;
     return !canTravel && !canRefuel && this.credits < this.targetWealth;
   }
