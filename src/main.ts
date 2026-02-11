@@ -40,11 +40,6 @@ async function main() {
     } else if (command === "travel") {
       try {
         commandTravel(gs, words);
-        const result = gs.checkGameEnd();
-        if (result.gameOver) {
-          console.log(result.message);
-          process.exit(0);
-        }
       } catch (err) {
         console.log((err as Error).message);
       }
