@@ -2,69 +2,13 @@
 
 A text-based space trading simulation game built with TypeScript and Node.js. Buy low, sell high, and navigate the solar system to reach your wealth target before running out of fuel or credits.
 
-## Features
+## Motivation
 
-- **8 Unique Planets**: Each with distinct market prices and economic profiles
-- **Dynamic Economy**: Real-time supply/demand with market quantities that deplete and replenish
-- **Strategic Trading**: 4 trade goods (water, metals, tech, spices) with varying profit margins
-- **Resource Management**: Balance fuel consumption, cargo capacity, and credits
-- **Win/Lose Conditions**: Reach target wealth or get stranded with no fuel and no money
+Space Trader was created as a fun way to learn TypeScript while building something interactive. Trading games have always been engaging - there's something satisfying about buying low, selling high, and watching your wealth grow. This project brings that experience to the terminal, letting you navigate a solar system, manage resources, and strategize your way to victory.
 
-## Tech Stack
+Whether you're learning TypeScript or just want a quick coffee break game, Space Trader offers a compact but complete gaming experience that runs right in your terminal.
 
-- **TypeScript** - Strict type safety with union types, type guards, and mapped types
-- **Node.js** - CLI interface using native readline module
-- **ES Modules** - Modern JavaScript module system
-
-## Key Technical Highlights
-
-### Type Safety
-- Union types for planets and goods prevent invalid inputs at compile time
-- Custom type guards (`isValidPlanet`, `isValidCargoItem`) for runtime validation
-- Mapped types for type-safe market data structures
-
-### Game Architecture
-- **Command Pattern**: Each game command is encapsulated in its own module
-- **State Management**: Centralized `GameState` class manages all game logic
-- **Separation of Concerns**: Data (`gamedata.ts`), logic (`gamelogic.ts`), and commands are cleanly separated
-
-### Input Validation
-- Comprehensive validation for all user inputs
-- Positive quantity validation to prevent invalid trades
-- Graceful error handling with descriptive messages
-
-## Running the Game
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start the game
-pnpm start
-```
-
-## Game Commands
-
-- `status` - View your credits, cargo, fuel, and location
-- `market` - Display current planet's market prices
-- `buy <item> <quantity>` - Purchase goods
-- `sell <item> <quantity>` - Sell cargo
-- `travel <planet>` - Move to another planet (costs fuel)
-- `refuel <units>` - Buy fuel
-- `explore` - View travel destinations and fuel costs
-- `help` - Show all commands
-- `quit` - Exit game
-
-## Learning Outcomes
-
-This project demonstrates:
-- **TypeScript best practices** with strict compiler settings
-- **Object-oriented design** principles
-- **Error handling** and input validation
-- **Game loop architecture** for interactive applications
-- **State management** in a complex system
-
-## Example Gameplay
+## Quick Start
 
 ```
 Space Trader > status
@@ -109,6 +53,69 @@ Space Trader > sell water 20
 You sold 20 water to mars market
 ```
 
+## Usage
+
+- `status` - View your credits, cargo, fuel, and location
+- `market` - Display current planet's market prices
+- `buy <item> <quantity>` - Purchase goods
+- `sell <item> <quantity>` - Sell cargo
+- `travel <planet>` - Move to another planet (costs fuel)
+- `refuel <units>` - Buy fuel
+- `explore` - View travel destinations and fuel costs
+- `help` - Show all commands
+- `quit` - Exit game
+
+## Contributing
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd space-trader
+
+# Install dependencies
+pnpm install
+
+# Start the game
+pnpm start
+```
+
+Contributions are welcome! Here's how you can help:
+
+1. **Fork the repository** and create a feature branch
+2. **Make your changes** - whether it's fixing bugs, adding features, or improving documentation
+3. **Test your changes** to ensure everything works correctly
+4. **Submit a pull request** with a clear description of what you changed and why
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd space-trader
+
+# Install dependencies
+pnpm install
+
+# Start the game
+pnpm start
+```
+
+### Code Style
+
+- Follow the existing TypeScript patterns and conventions
+- Keep functions small and focused
+- Add comments for complex logic
+
+## Learning Outcomes
+
+This project demonstrates:
+- **TypeScript best practices** with strict compiler settings
+- **Object-oriented design** principles
+- **Error handling** and input validation
+- **Game loop architecture** for interactive applications
+- **State management** in a complex system
+
+
 ## Project Structure
 
 ```
@@ -126,5 +133,3 @@ src/
 ├── help.ts           # Help command
 └── quit.ts           # Quit command
 ```
-
-*Built as a learning project to explore TypeScript's type system and CLI application architecture.*
